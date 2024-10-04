@@ -66,30 +66,5 @@ The project uses two main database schemas:
 - **ParentDbSchema.sql**: Defines tables for parent accounts, settings, notifications, and analytics.
 - **ChildDbSchema.sql**: Defines tables for child accounts, transactions, chores, quests, and notifications.
 
-## Hosting on Replit
 
-To host this project on Replit:
-
-1. Create a new Repl and choose "HTML, CSS, JS" as the template.
-2. Upload all the HTML files to the Repl.
-3. Set the "index.html" file as the main file in your Repl settings.
-4. Click the "Run" button to start the web server.
-5. Your project will be accessible via a unique Replit URL.
-
-Note: The database schemas are for reference only and cannot be directly used in the Replit environment. For a fully functional app, you would need to implement a backend server and database.
-
-## Technologies Used
-
-- HTML5
-- CSS (Tailwind CSS)
-- JavaScript
-- SQL (PostgreSQL) - for reference only in this demo
-
-## Contributing
-
-(Add guidelines for contributing to the project)
-
-## License
-
-(Add license information)
 
