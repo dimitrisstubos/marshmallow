@@ -4,7 +4,7 @@ Marshmallow is a financial education app designed to help parents teach their ch
 
 ## Hosted Demo
 
-[Hosted Demo](https://marshmallow-radar.replit.app/)
+[marshmallow demo](https://marshmallow-radar.replit.app/)
 
 ## Views
 
