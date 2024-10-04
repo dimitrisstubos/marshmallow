@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Add Chore</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F0F8FF;
+        }
+        .ios-card {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-bar {
+            background-color: #FFFFFF;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            color: #8E8E93;
+        }
+        .tab-item.active {
+            color: #007AFF;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-md mx-auto bg-white min-h-screen flex flex-col">
+        <div class="bg-gray-800 text-white p-6">
+            <h1 class="text-2xl font-bold">Add Chore</h1>
+        </div>
+        
+        <div class="p-4 flex-grow">
+            <form id="addChoreForm" class="space-y-4">
+                <div>
+                    <label for="choreName" class="block text-sm font-medium text-gray-700">Chore Name</label>
+                    <input type="text" id="choreName" name="choreName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="choreDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="choreDescription" name="choreDescription" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                </div>
+                <div>
+                    <label for="choreReward" class="block text-sm font-medium text-gray-700">Reward ($)</label>
+                    <input type="number" id="choreReward" name="choreReward" step="0.01" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="choreAssignee" class="block text-sm font-medium text-gray-700">Assign To</label>
+                    <select id="choreAssignee" name="choreAssignee" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option value="">Select a child</option>
+                        <!-- Child options will be dynamically inserted here -->
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Add Chore
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="tab-bar flex justify-around mt-auto">
+            <a href="ParentDashboardView.html" class="tab-item">
+                <i class="fas fa-home"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="ParentAnalyticsView.html" class="tab-item">
+                <i class="fas fa-chart-bar"></i>
+                <span class="text-xs">Analytics</span>
+            </a>
+            <a href="ParentSettingsView.html" class="tab-item">
+                <i class="fas fa-cog"></i>
+                <span class="text-xs">Settings</span>
+            </a>
+            <a href="ParentNotificationsView.html" class="tab-item">
+                <i class="fas fa-bell"></i>
+                <span class="text-xs">Notifications</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Sample data for demonstration
+        const children = [
+            { id: 1, name: "Alice" },
+            { id: 2, name: "Bob" }
+        ];
+        
+        const choreAssigneeSelect = document.getElementById('choreAssignee');
+        children.forEach(child => {
+            const option = document.createElement('option');
+            option.value = child.id;
+            option.textContent = child.name;
+            choreAssigneeSelect.appendChild(option);
+        });
+        
+        document.getElementById('addChoreForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const choreData = Object.fromEntries(formData.entries());
+            console.log('Chore data:', choreData);
+            // Here you would typically send this data to your backend
+            alert('Chore added successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

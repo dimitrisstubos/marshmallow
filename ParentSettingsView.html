@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Parent Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F0F8FF;
+        }
+        .ios-card {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-bar {
+            background-color: #FFFFFF;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            color: #8E8E93;
+        }
+        .tab-item.active {
+            color: #007AFF;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-md mx-auto bg-white min-h-screen flex flex-col">
+        <div class="bg-gray-800 text-white p-6">
+            <h1 class="text-2xl font-bold">Settings</h1>
+        </div>
+        
+        <div class="p-4 flex-grow">
+            <div id="settingsContent" class="space-y-4">
+                <!-- Settings content will be inserted here -->
+                <div class="ios-card p-4">
+                    <h2 class="text-lg font-semibold mb-2">Account Settings</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-500">Edit Profile</a></li>
+                        <li><a href="#" class="text-blue-500">Change Password</a></li>
+                        <li><a href="#" class="text-blue-500">Notification Preferences</a></li>
+                    </ul>
+                </div>
+                <div class="ios-card p-4">
+                    <h2 class="text-lg font-semibold mb-2">Child Account Settings</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-500">Manage Child Accounts</a></li>
+                        <li><a href="#" class="text-blue-500">Set Allowance Rules</a></li>
+                        <li><a href="#" class="text-blue-500">Chore and Quest Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-bar flex justify-around mt-auto">
+            <a href="ParentDashboardView.html" class="tab-item">
+                <i class="fas fa-home"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="ParentAnalyticsView.html" class="tab-item">
+                <i class="fas fa-chart-bar"></i>
+                <span class="text-xs">Analytics</span>
+            </a>
+            <div class="tab-item active">
+                <i class="fas fa-cog"></i>
+                <span class="text-xs">Settings</span>
+            </div>
+            <a href="ParentNotificationsView.html" class="tab-item">
+                <i class="fas fa-bell"></i>
+                <span class="text-xs">Notifications</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
