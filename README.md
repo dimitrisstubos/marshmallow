@@ -2,7 +2,7 @@
 
 ## DEMO
 
-(`https://marshmallow-radar.replit.app/`)
+[https://marshmallow-radar.replit.app/](https://marshmallow-radar.replit.app/)
 
 ## Parent Dashboard
 
