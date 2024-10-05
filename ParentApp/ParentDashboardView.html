@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Child Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="ParentStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-user-circle"></i>
+        <i class="fas fa-cog"></i>
+    </div>
+    
+    <div class="my-total-section">
+        <div class="total-label">Alex's Account Total</div>
+        <div class="total-amount">$<span id="totalBalance">0.00</span></div>
+    </div>
+    
+    <div class="content">
+        <div class="spending-card">
+            <div class="balance-content">
+                <div class="balance-left">
+                    <i class="fas fa-credit-card balance-icon"></i>
+                    <span class="text-balance">Spending</span>
+                </div>
+                <span class="text-balance-value">$<span id="spendingBalance">0.00</span></span>
+            </div>
+        </div>
+        
+        <div class="savings-card">
+            <div class="balance-content">
+                <div class="balance-left">
+                    <i class="fas fa-piggy-bank balance-icon"></i>
+                    <span class="text-balance">Savings</span>
+                </div>
+                <span class="text-balance-value">$<span id="savingsBalance">0.00</span></span>
+            </div>
+        </div>
+        
+        <div class="transaction-card">
+            <div class="transaction-header">
+                <span class="transaction-title">Transactions</span>
+            </div>
+            <div id="transactionList" class="transaction-list">
+                <!-- Transactions will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <i class="fas fa-home"></i>
+        </div>
+        <a href="ChildChoreView.html" class="tab-item">
+            <i class="fas fa-gift"></i>
+        </a>
+        <a href="ChildQuestView.html" class="tab-item">
+            <i class="fas fa-suitcase"></i>
+        </a>
+        <a href="ChildNotificationsView.html" class="tab-item">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </a>
+    </div>
+    
+    <script>
+        // Sample data for demonstration
+        const child = {
+            spendingBalance: 31.20,
+            savingsBalance: 20.22,
+            rewardsBalance: 1.04,
+            transactions: [
+                {type: 'earned', description: 'Earned', subtitle: 'Made their bed', amount: 2.00, icon: 'fa-plus-circle'},
+                {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle'},
+                {type: 'spent', description: 'Spent', subtitle: 'Internet purchase', amount: -15.00, icon: 'fa-minus-circle'},
+                {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -10.00, icon: 'fa-piggy-bank'},
+                {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 5.00, icon: 'fa-exchange-alt'}
+            ]
+        };
+        
+        // Calculate total balance
+        child.totalBalance = child.spendingBalance + child.savingsBalance;
+        
+        // Update balance displays
+        document.getElementById('totalBalance').textContent = child.totalBalance.toFixed(2);
+        document.getElementById('spendingBalance').textContent = child.spendingBalance.toFixed(2);
+        document.getElementById('savingsBalance').textContent = child.savingsBalance.toFixed(2);
+        
+        // Generate transaction list
+        const transactionList = document.getElementById('transactionList');
+        child.transactions.forEach(transaction => {
+            const transactionItem = document.createElement('div');
+            transactionItem.className = 'transaction-item';
+            transactionItem.innerHTML = `
+                <div class="transaction-left">
+                    <i class="fas ${transaction.icon} transaction-icon ${transaction.type === 'swapped' ? 'swap-icon' : ''}"></i>
+                    <div class="transaction-text">
+                        <span class="transaction-description">${transaction.description}</span>
+                        <span class="transaction-subtitle">${transaction.subtitle}</span>
+                    </div>
+                </div>
+                <span class="transaction-amount ${transaction.type}">${transaction.amount >= 0 ? '+' : ''}$${Math.abs(transaction.amount).toFixed(2)}</span>
+            `;
+            transactionList.appendChild(transactionItem);
+        });
+    </script>
+</body>
+</html>

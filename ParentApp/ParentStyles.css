@@ -1,0 +1,235 @@
+/* Global Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: rgb(251, 236, 200);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+    padding: 1rem 1.5rem;  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header i {
+    cursor: pointer;
+    font-size: 2rem; 
+    color: #4E4436;
+}
+
+/* Total Balance Section */
+.my-total-section {
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.my-total-section .total-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #887B63;
+    margin-bottom: 0.5rem;
+}
+
+.my-total-section .total-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4E4436;
+}
+
+/* Main Content Area */
+.content {
+    flex-grow: 1;
+    padding: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Card Styles (Spending and Savings) */
+.spending-card, .savings-card {
+    background-color: rgb(252, 248, 234);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+.spending-card .balance-icon {
+    color: #34C759;
+    font-size: 1.7em;  
+    margin-right: 0.75rem;
+    width: 24px;
+    text-align: center;
+}
+
+.savings-card .balance-icon {
+    color: #fb9174ed;
+    font-size: 1.7em; 
+    margin-right: 0.75rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Transaction Card Styles */
+.transaction-card {
+    background-color: rgb(252, 248, 234);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.transaction-title {
+    color: #887B63;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-icon {
+    color: #34C759;
+    font-size: 1.4em;
+    margin-right: 0.75rem;
+}
+
+.transaction-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-description {
+    color: #4E4436;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.transaction-subtitle {
+    color: #887B63;
+    font-size: 0.9em;
+}
+
+.transaction-amount {
+    color: #4E4436;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Shared Styles for Balance Display */
+.balance-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.balance-left {
+    display: flex;
+    align-items: center;
+}
+
+.text-balance {
+    color: #887B63;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.text-balance-value {
+    color: #4E4436;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* Tab Bar Styles */
+.tab-bar {
+    background-color: rgb(252, 247, 231); 
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+}
+
+.tab-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #887b63c5;  
+    text-decoration: none;
+    font-size: 1.5rem;
+    width: 25%;
+    position: relative;
+    padding: 0.3rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tab-item.active {
+    color: #4E4436;  
+    background-color: rgb(251, 236, 200);
+    padding: 0.1rem;
+    width: 15%;
+    margin: 0 auto;
+}
+
+/* Notification Badge Styles */
+.notification-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -3px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* Transaction Icon Color Variations */
+.transaction-icon.fa-minus-circle {
+    color: #FF3B30; /* Red color for spending transactions */
+}
+
+.transaction-icon.fa-piggy-bank {
+    color: #fb9174ed; /* Same color as the savings card icon */
+}
+
+.transaction-icon.swap-icon {
+    color: #007AFF; /* Blue color for swap transactions */
+}
