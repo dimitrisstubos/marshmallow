@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Child Chores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="ChildChoreStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-user-circle"></i>
+        <h1 class="text-xl font-bold">Chores</h1>
+        <i class="fas fa-cog"></i>
+    </div>
+    
+    <div class="content">
+        <div class="chore-summary">
+            <div class="summary-item">
+                <div class="summary-value" id="leftToEarn">$0.00</div>
+                <div class="summary-label">Left to Earn</div>
+            </div>
+            <div class="summary-item">
+                <div class="dial-container">
+                    <svg class="dial" width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="dial-background" cx="60" cy="60" r="54" fill="none" stroke-width="4"/>
+                        <circle class="dial-progress" cx="60" cy="60" r="54" fill="none" stroke-width="6" stroke-dasharray="0 339.12" transform="rotate(-90 60 60)"/>
+                        <circle class="dial-dot" cx="60" cy="6" r="8" fill="#FF8C00"/>
+                        <text x="60" y="55" text-anchor="middle" class="dial-text" id="toDo">0/0</text>
+                        <text x="60" y="75" text-anchor="middle" class="dial-label">To Do</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="earned">$0.00</div>
+                <div class="summary-label">Earned</div>
+            </div>
+        </div>
+
+        <div class="suggest-chore-container">
+            <button class="suggest-chore-button">Suggest Chore</button>
+        </div>
+
+        <div id="chore-list" class="chore-list">
+            <!-- Chores will be dynamically added here -->
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <a href="ChildDashboardView.html" class="tab-item">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="ChildQuestView.html" class="tab-item">
+            <i class="fas fa-gift"></i>
+        </a>
+        <div class="tab-item active">
+            <i class="fas fa-suitcase"></i>
+        </div>
+        <a href="ChildNotificationsView.html" class="tab-item">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        const chores = [
+            { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
+            { name: "Take out the trash", reward: 0.50, icon: "fa-trash", frequency: "Weekly", status: "Approved" },
+            { name: "Do the dishes", reward: 2.00, icon: "fa-sink", frequency: "Daily", status: "To Be Approved" }
+        ];
+
+        function updateSummary() {
+            let leftToEarn = 0;
+            let toDo = 0;
+            let earned = 0;
+            let totalChores = chores.length;
+
+            chores.forEach(chore => {
+                if (chore.status === "To Do") {
+                    leftToEarn += chore.reward;
+                    toDo++;
+                } else if (chore.status === "Approved") {
+                    earned += chore.reward;
+                }
+            });
+
+            const completedChores = totalChores - toDo;
+            const completionPercentage = (completedChores / totalChores) * 100;
+
+            document.getElementById('leftToEarn').textContent = `$${leftToEarn.toFixed(2)}`;
+            document.getElementById('toDo').textContent = `${completedChores}/${totalChores}`;
+            document.getElementById('earned').textContent = `$${earned.toFixed(2)}`;
+
+            const dialProgress = document.querySelector('.dial-progress');
+            const dialDot = document.querySelector('.dial-dot');
+            const radius = 54;
+            const circumference = 2 * Math.PI * radius;
+            
+            const dashArray = (completionPercentage / 100) * circumference;
+            dialProgress.style.strokeDasharray = `${dashArray} ${circumference}`;
+
+            const angle = (completionPercentage / 100) * 2 * Math.PI;
+            const dotX = 60 + radius * Math.sin(angle);
+            const dotY = 60 - radius * Math.cos(angle);
+            dialDot.setAttribute('cx', dotX);
+            dialDot.setAttribute('cy', dotY);
+        }
+
+        function renderChores() {
+            const choreList = document.getElementById('chore-list');
+            choreList.innerHTML = '';
+            chores.forEach(chore => {
+                const choreItem = document.createElement('div');
+                choreItem.className = 'chore-item';
+                choreItem.innerHTML = `
+                    <div class="chore-left">
+                        <i class="fas ${chore.icon} chore-icon"></i>
+                        <div class="chore-text">
+                            <span class="chore-name">${chore.name}</span>
+                            <span class="chore-frequency">${chore.frequency}</span>
+                        </div>
+                    </div>
+                    <div class="chore-right">
+                        <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
+                        <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
+                        ${chore.status === "To Do" ? '<button class="request-approval-button">Request Approval</button>' : ''}
+                    </div>
+                `;
+                choreList.appendChild(choreItem);
+            });
+            updateSummary();
+        }
+
+        window.onload = renderChores;
+    </script>
+</body>
+</html>
