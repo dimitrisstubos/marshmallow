@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Parent Chores</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="ParentChoreStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-user-circle"></i>
+        <h1 class="text-xl font-bold">Manage Chores</h1>
+        <i class="fas fa-cog"></i>
+    </div>
+    
+    <div class="content">
+        <div class="chore-summary">
+            <div class="summary-item">
+                <div class="summary-value" id="totalChores">0</div>
+                <div class="summary-label">Total Chores</div>
+            </div>
+            <div class="summary-item">
+                <div class="dial-container">
+                    <svg class="dial" width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="dial-background" cx="60" cy="60" r="54" fill="none" stroke-width="4"/>
+                        <circle class="dial-progress" cx="60" cy="60" r="54" fill="none" stroke-width="6" stroke-dasharray="0 339.12" transform="rotate(-90 60 60)"/>
+                        <circle class="dial-dot" cx="60" cy="6" r="8" fill="#FF8C00"/>
+                        <text x="60" y="55" text-anchor="middle" class="dial-text" id="completedChores">0/0</text>
+                        <text x="60" y="75" text-anchor="middle" class="dial-label">Completed</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="pendingChores">0</div>
+                <div class="summary-label">Pending Approval</div>
+            </div>
+        </div>
+
+        <div class="suggest-chore-container">
+            <button class="suggest-chore-button">Add New Chore</button>
+        </div>
+
+        <div id="chore-list" class="chore-list">
+            <!-- Chores will be dynamically added here -->
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <a href="ParentDashboardView.html" class="tab-item">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="ParentQuestView.html" class="tab-item">
+            <i class="fas fa-gift"></i>
+        </a>
+        <div class="tab-item active">
+            <i class="fas fa-suitcase"></i>
+        </div>
+        <a href="ParentNotificationsView.html" class="tab-item">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        const chores = [
+            { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
+            { name: "Take out the trash", reward: 0.50, icon: "fa-trash", frequency: "Weekly", status: "To Be Approved" },
+            { name: "Do the dishes", reward: 2.00, icon: "fa-sink", frequency: "Daily", status: "Approved" }
+        ];
+
+        function updateSummary() {
+            let totalChores = chores.length;
+            let completedChores = chores.filter(chore => chore.status === "Approved").length;
+            let pendingChores = chores.filter(chore => chore.status === "To Be Approved").length;
+
+            document.getElementById('totalChores').textContent = totalChores;
+            document.getElementById('completedChores').textContent = `${completedChores}/${totalChores}`;
+            document.getElementById('pendingChores').textContent = pendingChores;
+
+            const dialProgress = document.querySelector('.dial-progress');
+            const dialDot = document.querySelector('.dial-dot');
+            const radius = 54;
+            const circumference = 2 * Math.PI * radius;
+            
+            const completionPercentage = (completedChores / totalChores) * 100;
+            const dashArray = (completionPercentage / 100) * circumference;
+            dialProgress.style.strokeDasharray = `${dashArray} ${circumference}`;
+
+            const angle = (completionPercentage / 100) * 2 * Math.PI;
+            const dotX = 60 + radius * Math.sin(angle);
+            const dotY = 60 - radius * Math.cos(angle);
+            dialDot.setAttribute('cx', dotX);
+            dialDot.setAttribute('cy', dotY);
+        }
+
+        function renderChores() {
+            const choreList = document.getElementById('chore-list');
+            choreList.innerHTML = '';
+            chores.forEach(chore => {
+                const choreItem = document.createElement('div');
+                choreItem.className = 'chore-item';
+                choreItem.innerHTML = `
+                    <div class="chore-left">
+                        <i class="fas ${chore.icon} chore-icon"></i>
+                        <div class="chore-text">
+                            <span class="chore-name">${chore.name}</span>
+                            <span class="chore-frequency">${chore.frequency}</span>
+                        </div>
+                    </div>
+                    <div class="chore-right">
+                        <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
+                        <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
+                        ${chore.status === "To Be Approved" ? '<button class="approve-chore-button">Approve</button>' : ''}
+                    </div>
+                `;
+                choreList.appendChild(choreItem);
+            });
+            updateSummary();
+        }
+
+        window.onload = renderChores;
+    </script>
+</body>
+</html>
