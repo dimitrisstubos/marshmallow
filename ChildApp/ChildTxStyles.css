@@ -43,6 +43,11 @@
     font-size: 0.9em;
 }
 
+.transaction-datetime {
+    color: #A9A9A9;
+    font-size: 0.8em;
+}
+
 .transaction-amount {
     color: #4E4436;
     font-weight: bold;

@@ -71,6 +71,17 @@ function renderTransactions() {
 
     transactionList.innerHTML = '';
     transactions.forEach(transaction => {
+        const transactionDate = new Date(transaction.datetime);
+        const formattedDate = transactionDate.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'short', 
+            day: 'numeric' 
+        });
+        const formattedTime = transactionDate.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit'
+        });
+
         const transactionItem = document.createElement('div');
         transactionItem.className = 'transaction-item flex justify-between items-center p-2 border-b';
         transactionItem.innerHTML = `
@@ -79,10 +90,11 @@ function renderTransactions() {
                 <div>
                     <div class="transaction-description font-semibold">${transaction.description}</div>
                     <div class="transaction-subtitle text-sm text-gray-600">${transaction.subtitle}</div>
+                    <div class="transaction-datetime text-xs text-gray-500">${formattedDate} at ${formattedTime}</div>
                 </div>
             </div>
             <div class="transaction-amount ${transaction.amount < 0 ? 'text-red-500' : 'text-green-500'}">
-                $${transaction.amount.toFixed(2)}
+                $${Math.abs(transaction.amount).toFixed(2)}
             </div>
         `;
         transactionList.appendChild(transactionItem);
