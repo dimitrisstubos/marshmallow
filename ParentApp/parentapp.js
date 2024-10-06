@@ -1,4 +1,4 @@
-import { sharedData, transactions, calculateTotalBalance, updateChoreStatus } from '../sharedData.js';
+import { sharedData, transactions, calculateTotalBalance, updateChoreStatus } from '../globalLogic.js';
 import { updateDial } from './parent_dial.js';
 
 function updateDashboard() {
