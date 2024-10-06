@@ -1,5 +1,5 @@
 import { updateChoreStatus } from '../choreManagement.js';
-import { updateDashboard, renderChores, renderTransactions } from './parentapp_render.js';
+import { updateDashboard, renderChores } from './parentapp_render.js';
 import { addTransaction } from '../financialOperations.js';
 
 function initializeFilterButtons() {
@@ -41,5 +41,6 @@ document.addEventListener('click', function(e) {
         
         renderChores('to-be-approved');
         updateDashboard();
+        window.location.reload();
     }
 });

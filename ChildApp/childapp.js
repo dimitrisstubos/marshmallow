@@ -41,5 +41,7 @@ document.addEventListener('click', function(e) {
         });
         renderTransactions();
         updateDashboard();
+        window.location.reload();
+
     }
 });
