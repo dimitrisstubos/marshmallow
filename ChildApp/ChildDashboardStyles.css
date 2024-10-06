@@ -125,3 +125,18 @@
     font-weight: bold;
     font-size: 1.3em;
 }
+
+/* Marshmallow Logo */
+.marshmallow-logo {
+   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.header {
+    position: relative;
+    z-index: 1;
+}
