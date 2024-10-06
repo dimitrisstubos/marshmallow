@@ -1,9 +1,16 @@
-export const defaultTransactions = [
-    {type: 'earned', description: 'Earned', subtitle: 'Made their bed', amount: 2.00, icon: 'fa-plus-circle'},
-    {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle'},
-    {type: 'spent', description: 'Spent', subtitle: 'Internet purchase', amount: -15.00, icon: 'fa-minus-circle'},
-    {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -10.00, icon: 'fa-piggy-bank'},
-    {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 5.00, icon: 'fa-exchange-alt'}
+export const transactionHistory = [
+    {type: 'earned', description: 'Earned', subtitle: 'Clean your room', amount: 1.00, icon: 'fa-plus-circle', datetime: '2024-10-01T08:30:00Z'},
+    {type: 'earned', description: 'Earned', subtitle: 'Do the dishes', amount: 2.00, icon: 'fa-plus-circle', datetime: '2024-10-02T15:00:00Z'},
+    {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle', datetime: '2024-10-03T09:00:00Z'},
+    {type: 'spent', description: 'Spent', subtitle: 'Bought a book', amount: -5.00, icon: 'fa-minus-circle', datetime: '2024-10-03T10:15:00Z'},
+    {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -3.00, icon: 'fa-piggy-bank', datetime: '2024-10-04T11:45:00Z'},
+    {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 3.00, icon: 'fa-exchange-alt', datetime: '2024-10-05T12:30:00Z'}
+];
+
+export const choresList = [
+    { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
+    { name: "Take out the trash", reward: 0.50, icon: "fa-trash", frequency: "Weekly", status: "To Be Approved" },
+    { name: "Do the dishes", reward: 2.00, icon: "fa-sink", frequency: "Daily", status: "Approved" }
 ];
 
 export const defaultData = {
@@ -12,9 +19,5 @@ export const defaultData = {
         savingsBalance: 0,
         rewardsBalance: 0,
     },
-    chores: [
-        { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
-        { name: "Take out the trash", reward: 0.50, icon: "fa-trash", frequency: "Weekly", status: "To Be Approved" },
-        { name: "Do the dishes", reward: 2.00, icon: "fa-sink", frequency: "Daily", status: "Approved" }
-    ]
+    chores: [...choresList]
 };
