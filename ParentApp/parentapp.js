@@ -31,7 +31,7 @@ document.addEventListener('click', function(e) {
         
         updateChoreStatus(choreName, 'Approved');
         addTransaction({
-            type: 'reward',
+            type: 'earned',
             amount: choreReward,
             description: `Chore Completed: ${choreName}`,
             subtitle: 'Reward',
