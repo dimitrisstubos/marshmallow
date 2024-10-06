@@ -39,7 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 .chore-item {
@@ -212,7 +212,7 @@ body {
 .suggest-chore-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding: 0;
 }
 
@@ -284,4 +284,36 @@ body {
 
 .approve-chore-button:active {
     background-color: #3e8e41;
+}
+
+.chore-filter-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background-color: rgb(251, 236, 200);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 8px;
+}
+
+.filter-button {
+    background-color: transparent;
+    color: #4E4436;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.filter-button.active {
+    background-color: rgb(252, 248, 234);
+    color: #4E4436;
+}
+
+.filter-button:hover:not(.active) {
+    background-color: rgba(252, 248, 234, 0.5);
 }
