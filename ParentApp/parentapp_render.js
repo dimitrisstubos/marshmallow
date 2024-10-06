@@ -36,9 +36,9 @@ export function renderTransactions() {
 }
 
 export function updateChoreSummary() {
-    let totalChores = sharedData.chores.length;
-    let completedChores = sharedData.chores.filter(chore => chore.status === "Approved").length;
-    let pendingChores = sharedData.chores.filter(chore => chore.status === "To Be Approved").length;
+    const totalChores = sharedData.chores.length;
+    const completedChores = sharedData.chores.filter(chore => chore.status === "Approved").length;
+    const pendingChores = sharedData.chores.filter(chore => chore.status === "To Be Approved").length;
 
     document.getElementById('totalChores').textContent = totalChores;
     document.getElementById('completedChores').textContent = `${completedChores}/${totalChores}`;
@@ -53,12 +53,8 @@ export function renderChores(filter = 'to-be-approved') {
 
     choreList.innerHTML = '';
     
-    // Update filter buttons
     document.querySelectorAll('.filter-button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.filter === filter) {
-            btn.classList.add('active');
-        }
+        btn.classList.toggle('active', btn.dataset.filter === filter);
     });
 
     sharedData.chores.forEach(chore => {

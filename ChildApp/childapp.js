@@ -8,24 +8,19 @@ function initializeFilterButtons() {
         button.addEventListener('click', function() {
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            const filter = this.dataset.filter;
-            renderChores(filter);
+            renderChores(this.dataset.filter);
         });
     });
 }
 
 function initializePage() {
-    if (document.getElementById('totalBalance')) {
-        updateDashboard();
-    }
+    if (document.getElementById('totalBalance')) updateDashboard();
     if (document.getElementById('chore-list')) {
         initializeFilterButtons();
         renderChores('to-do');
         document.querySelector('.filter-button[data-filter="to-do"]').classList.add('active');
     }
-    if (document.getElementById('transaction-list')) {
-        renderTransactions();
-    }
+    if (document.getElementById('transaction-list')) renderTransactions();
 }
 
 window.onload = initializePage;

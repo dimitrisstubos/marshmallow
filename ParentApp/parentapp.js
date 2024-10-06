@@ -3,28 +3,19 @@ import { updateDashboard, renderChores, renderTransactions } from './parentapp_r
 import { addTransaction } from '../financialOperations.js';
 
 function initializeFilterButtons() {
-    const filterButtons = document.querySelectorAll('.filter-button');
-    filterButtons.forEach(button => {
+    document.querySelectorAll('.filter-button').forEach(button => {
         button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            const filter = this.dataset.filter;
-            renderChores(filter);
+            renderChores(this.dataset.filter);
         });
     });
 }
 
 function initializePage() {
-    if (document.getElementById('totalBalance')) {
-        updateDashboard();
-    }
+    if (document.getElementById('totalBalance')) updateDashboard();
     if (document.getElementById('chore-list')) {
-        // Set the 'to-be-approved' button as active before initializing other buttons
-        const toBeApprovedButton = document.querySelector('.filter-button[data-filter="to-be-approved"]');
-        if (toBeApprovedButton) {
-            toBeApprovedButton.classList.add('active');
-        }
-        
+        document.querySelector('.filter-button[data-filter="to-be-approved"]')?.classList.add('active');
         initializeFilterButtons();
         renderChores('to-be-approved');
     }
@@ -32,7 +23,6 @@ function initializePage() {
 
 window.onload = initializePage;
 
-// Event listeners
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('approve-chore-button')) {
         const choreItem = e.target.closest('.chore-item');
@@ -40,7 +30,6 @@ document.addEventListener('click', function(e) {
         const choreReward = parseFloat(choreItem.querySelector('.chore-reward').textContent.slice(1));
         
         updateChoreStatus(choreName, 'Approved');
-        
         addTransaction({
             type: 'reward',
             amount: choreReward,
