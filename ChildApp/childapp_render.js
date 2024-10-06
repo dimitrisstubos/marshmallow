@@ -36,7 +36,7 @@ export function updateSummary() {
     updateDial(completionPercentage);
 }
 
-export function renderChores(filter = 'all') {
+export function renderChores(filter = 'to-do') {
     const choreList = document.getElementById('chore-list');
     if (!choreList) return;
 

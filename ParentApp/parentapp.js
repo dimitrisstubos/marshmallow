@@ -19,8 +19,14 @@ function initializePage() {
         updateDashboard();
     }
     if (document.getElementById('chore-list')) {
+        // Set the 'to-be-approved' button as active before initializing other buttons
+        const toBeApprovedButton = document.querySelector('.filter-button[data-filter="to-be-approved"]');
+        if (toBeApprovedButton) {
+            toBeApprovedButton.classList.add('active');
+        }
+        
         initializeFilterButtons();
-        renderChores();
+        renderChores('to-be-approved');
     }
 }
 
@@ -43,7 +49,7 @@ document.addEventListener('click', function(e) {
             icon: 'fa-check-circle'
         });
         
-        renderChores();
+        renderChores('to-be-approved');
         updateDashboard();
     }
 });

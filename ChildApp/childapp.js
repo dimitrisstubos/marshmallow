@@ -20,7 +20,8 @@ function initializePage() {
     }
     if (document.getElementById('chore-list')) {
         initializeFilterButtons();
-        renderChores();
+        renderChores('to-do');
+        document.querySelector('.filter-button[data-filter="to-do"]').classList.add('active');
     }
     if (document.getElementById('transaction-list')) {
         renderTransactions();

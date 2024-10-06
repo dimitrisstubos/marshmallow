@@ -47,11 +47,20 @@ export function updateChoreSummary() {
     updateDial(completedChores, totalChores);
 }
 
-export function renderChores(filter = 'all') {
+export function renderChores(filter = 'to-be-approved') {
     const choreList = document.getElementById('chore-list');
     if (!choreList) return;
 
     choreList.innerHTML = '';
+    
+    // Update filter buttons
+    document.querySelectorAll('.filter-button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === filter) {
+            btn.classList.add('active');
+        }
+    });
+
     sharedData.chores.forEach(chore => {
         if (filter === 'all' || chore.status.toLowerCase().replace(/\s+/g, '-') === filter) {
             const choreItem = document.createElement('div');
