@@ -1,10 +1,9 @@
 export const transactionHistory = [
-    {type: 'earned', description: 'Earned', subtitle: 'Clean your room', amount: 1.00, icon: 'fa-plus-circle', datetime: '2024-10-01T08:30:00Z'},
-    {type: 'earned', description: 'Earned', subtitle: 'Do the dishes', amount: 2.00, icon: 'fa-plus-circle', datetime: '2024-10-02T15:00:00Z'},
-    {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle', datetime: '2024-10-03T09:00:00Z'},
-    {type: 'spent', description: 'Spent', subtitle: 'Bought a book', amount: -5.00, icon: 'fa-minus-circle', datetime: '2024-10-03T10:15:00Z'},
-    {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -3.00, icon: 'fa-piggy-bank', datetime: '2024-10-04T11:45:00Z'},
-    {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 3.00, icon: 'fa-exchange-alt', datetime: '2024-10-05T12:30:00Z'}
+    {type: 'earned', description: 'Earned', subtitle: 'Clean your room', amount: 1.00, icon: 'fa-plus-circle', datetime: '2024-07-01T08:30:00Z'},
+    {type: 'earned', description: 'Earned', subtitle: 'Do the dishes', amount: 2.00, icon: 'fa-plus-circle', datetime: '2024-07-02T15:00:00Z'},
+    {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle', datetime: '2024-07-03T09:00:00Z'},
+    {type: 'spent', description: 'Spent', subtitle: 'Bought a book', amount: -5.00, icon: 'fa-minus-circle', datetime: '2024-07-03T10:15:00Z'},
+    {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -3.00, icon: 'fa-piggy-bank', datetime: '2024-07-04T11:45:00Z'}
 ];
 
 export const choresList = [
