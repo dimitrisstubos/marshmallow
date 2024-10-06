@@ -31,11 +31,12 @@ document.addEventListener('click', function(e) {
         
         updateChoreStatus(choreName, 'Approved');
         addTransaction({
-            type: 'earned',
+            type: 'earned', // Ensure type is 'earned'
+            description: 'Earned', // Set description to 'Earned'
+            subtitle: choreName, // Use chore name as subtitle
             amount: choreReward,
-            description: `Chore Completed: ${choreName}`,
-            subtitle: 'Reward',
-            icon: 'fa-check-circle'
+            icon: 'fa-plus-circle', // Use the appropriate icon
+            datetime: new Date().toISOString() // Set current datetime
         });
         
         renderChores('to-be-approved');
