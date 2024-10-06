@@ -1,4 +1,5 @@
 import { sharedData, calculateTotalBalance, updateChoreStatus } from '../sharedData.js';
+import { updateDial } from './child_dial.js';
 
 function updateDashboard() {
     const child = sharedData.child;
@@ -33,22 +34,6 @@ function updateSummary() {
     document.getElementById('earned').textContent = `$${earned.toFixed(2)}`;
 
     updateDial(completionPercentage);
-}
-
-function updateDial(completionPercentage) {
-    const dialProgress = document.querySelector('.dial-progress');
-    const dialDot = document.querySelector('.dial-dot');
-    const radius = 54;
-    const circumference = 2 * Math.PI * radius;
-    
-    const dashArray = (completionPercentage / 100) * circumference;
-    dialProgress.style.strokeDasharray = `${dashArray} ${circumference}`;
-
-    const angle = (completionPercentage / 100) * 2 * Math.PI;
-    const dotX = 60 + radius * Math.sin(angle);
-    const dotY = 60 - radius * Math.cos(angle);
-    dialDot.setAttribute('cx', dotX);
-    dialDot.setAttribute('cy', dotY);
 }
 
 function renderChores() {
@@ -89,7 +74,6 @@ function initializePage() {
 
 window.onload = initializePage;
 
-// Event listeners
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('request-approval-button')) {
         const choreName = e.target.closest('.chore-item').querySelector('.chore-name').textContent;
