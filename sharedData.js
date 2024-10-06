@@ -1,5 +1,5 @@
 // Shared data
-const sharedData = {
+const defaultData = {
     child: {
         spendingBalance: 31.20,
         savingsBalance: 20.22,
@@ -19,6 +19,9 @@ const sharedData = {
     ]
 };
 
+// Load data from localStorage or use default
+let sharedData = JSON.parse(localStorage.getItem('sharedData')) || defaultData;
+
 // Shared functions
 function calculateTotalBalance(child) {
     return child.spendingBalance + child.savingsBalance;
@@ -28,19 +31,31 @@ function updateChoreStatus(choreName, newStatus) {
     const chore = sharedData.chores.find(c => c.name === choreName);
     if (chore) {
         chore.status = newStatus;
+        saveData();
     }
 }
 
 function addChore(chore) {
     sharedData.chores.push(chore);
+    saveData();
 }
 
 function removeChore(choreName) {
     const index = sharedData.chores.findIndex(c => c.name === choreName);
     if (index !== -1) {
         sharedData.chores.splice(index, 1);
+        saveData();
     }
 }
 
+function addTransaction(transaction) {
+    sharedData.child.transactions.unshift(transaction);
+    saveData();
+}
+
+function saveData() {
+    localStorage.setItem('sharedData', JSON.stringify(sharedData));
+}
+
 // Export shared data and functions
-export { sharedData, calculateTotalBalance, updateChoreStatus, addChore, removeChore };
+export { sharedData, calculateTotalBalance, updateChoreStatus, addChore, removeChore, addTransaction, saveData };

@@ -1,4 +1,4 @@
-import { sharedData, calculateTotalBalance, updateChoreStatus } from '../sharedData.js';
+import { sharedData, calculateTotalBalance, updateChoreStatus, addTransaction, saveData } from '../sharedData.js';
 import { updateDial } from './child_dial.js';
 
 function updateDashboard() {
@@ -65,6 +65,30 @@ function renderChores(filter = 'all') {
     updateSummary();
 }
 
+function renderTransactions() {
+    const transactionList = document.getElementById('transaction-list');
+    if (!transactionList) return;
+
+    transactionList.innerHTML = '';
+    sharedData.child.transactions.forEach(transaction => {
+        const transactionItem = document.createElement('div');
+        transactionItem.className = 'transaction-item flex justify-between items-center p-2 border-b';
+        transactionItem.innerHTML = `
+            <div class="transaction-info flex items-center">
+                <i class="fas ${transaction.icon} mr-2"></i>
+                <div>
+                    <div class="transaction-description font-semibold">${transaction.description}</div>
+                    <div class="transaction-subtitle text-sm text-gray-600">${transaction.subtitle}</div>
+                </div>
+            </div>
+            <div class="transaction-amount ${transaction.amount < 0 ? 'text-red-500' : 'text-green-500'}">
+                $${transaction.amount.toFixed(2)}
+            </div>
+        `;
+        transactionList.appendChild(transactionItem);
+    });
+}
+
 function initializeFilterButtons() {
     const filterButtons = document.querySelectorAll('.filter-button');
     filterButtons.forEach(button => {
@@ -85,14 +109,27 @@ function initializePage() {
         initializeFilterButtons();
         renderChores();
     }
+    if (document.getElementById('transaction-list')) {
+        renderTransactions();
+    }
 }
 
 window.onload = initializePage;
 
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('request-approval-button')) {
-        const choreName = e.target.closest('.chore-item').querySelector('.chore-name').textContent;
+        const choreItem = e.target.closest('.chore-item');
+        const choreName = choreItem.querySelector('.chore-name').textContent;
         updateChoreStatus(choreName, 'To Be Approved');
         renderChores();
+        addTransaction({
+            type: 'requested',
+            description: 'Request Approval',
+            subtitle: `${choreName}`,
+            amount: sharedData.chores.find(c => c.name === choreName).reward,
+            icon: 'fa-hourglass-half'
+        });
+        renderTransactions();
+        updateDashboard();
     }
 });
