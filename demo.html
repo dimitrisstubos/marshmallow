@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marshmallow - Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .iframe-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+
+        }
+        iframe {
+            flex: 1;
+            min-width: 400px;
+            height: 95vh;
+            border: none;
+            border-radius: 15px;
+        }
+        .iframe-label-parent {
+            position: absolute;
+            left: -165px;
+            top: 10%;
+            transform-origin: left top 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: white;
+            padding: 0.5rem;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .iframe-label-child {
+            position: absolute;
+            right: -150px;
+            top: 10%;
+            transform-origin: right top 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: white;
+            padding: 0.5rem;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4">
+    
+    <div class="iframe-container">
+        <div class="iframe-label-parent">Parent View</div>
+        <iframe src="/ParentApp/ParentDashboardView.html" title="Parent Dashboard"></iframe>
+        <iframe src="/ChildApp/ChildDashboardView.html" title="Child Dashboard"></iframe>
+        <div class="iframe-label-child">Child View</div>
+    </div>
+    
+</body>
+</html>
