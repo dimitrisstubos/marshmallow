@@ -7,40 +7,51 @@ function updateDashboard() {
     document.getElementById('totalBalance').textContent = child.totalBalance.toFixed(2);
     document.getElementById('spendingBalance').textContent = child.spendingBalance.toFixed(2);
     document.getElementById('savingsBalance').textContent = child.savingsBalance.toFixed(2);
-    document.getElementById('rewardsBalance').textContent = child.rewardsBalance.toFixed(2);
+    
+    renderTransactions();
 }
 
-function updateSummary() {
-    let leftToEarn = 0;
-    let toDo = 0;
-    let earned = 0;
-    let totalChores = sharedData.chores.length;
+function renderTransactions() {
+    const transactionList = document.getElementById('transactionList');
+    if (!transactionList) return;
 
-    sharedData.chores.forEach(chore => {
-        if (chore.status === "To Do") {
-            leftToEarn += chore.reward;
-            toDo++;
-        } else if (chore.status === "Approved") {
-            earned += chore.reward;
-        }
+    transactionList.innerHTML = '';
+    sharedData.child.transactions.forEach(transaction => {
+        const transactionItem = document.createElement('div');
+        transactionItem.className = 'transaction-item';
+        transactionItem.innerHTML = `
+            <div class="transaction-left">
+                <i class="fas ${transaction.icon} transaction-icon ${transaction.type === 'swapped' ? 'swap-icon' : ''}"></i>
+                <div class="transaction-text">
+                    <span class="transaction-description">${transaction.description}</span>
+                    <span class="transaction-subtitle">${transaction.subtitle}</span>
+                </div>
+            </div>
+            <span class="transaction-amount ${transaction.type}">${transaction.amount >= 0 ? '+' : ''}$${Math.abs(transaction.amount).toFixed(2)}</span>
+        `;
+        transactionList.appendChild(transactionItem);
     });
-
-    const completedChores = totalChores - toDo;
-    const completionPercentage = (completedChores / totalChores) * 100;
-
-    document.getElementById('leftToEarn').textContent = `$${leftToEarn.toFixed(2)}`;
-    document.getElementById('toDo').textContent = `${completedChores}/${totalChores}`;
-    document.getElementById('earned').textContent = `$${earned.toFixed(2)}`;
-
-    updateDial(completionPercentage);
 }
 
-function updateDial(completionPercentage) {
+function updateChoreSummary() {
+    let totalChores = sharedData.chores.length;
+    let completedChores = sharedData.chores.filter(chore => chore.status === "Approved").length;
+    let pendingChores = sharedData.chores.filter(chore => chore.status === "To Be Approved").length;
+
+    document.getElementById('totalChores').textContent = totalChores;
+    document.getElementById('completedChores').textContent = `${completedChores}/${totalChores}`;
+    document.getElementById('pendingChores').textContent = pendingChores;
+
+    updateDial(completedChores, totalChores);
+}
+
+function updateDial(completedChores, totalChores) {
     const dialProgress = document.querySelector('.dial-progress');
     const dialDot = document.querySelector('.dial-dot');
     const radius = 54;
     const circumference = 2 * Math.PI * radius;
     
+    const completionPercentage = (completedChores / totalChores) * 100;
     const dashArray = (completionPercentage / 100) * circumference;
     dialProgress.style.strokeDasharray = `${dashArray} ${circumference}`;
 
@@ -70,12 +81,12 @@ function renderChores() {
             <div class="chore-right">
                 <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
                 <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
-                ${chore.status === "To Do" ? '<button class="request-approval-button">Request Approval</button>' : ''}
+                ${chore.status === "To Be Approved" ? '<button class="approve-chore-button">Approve</button>' : ''}
             </div>
         `;
         choreList.appendChild(choreItem);
     });
-    updateSummary();
+    updateChoreSummary();
 }
 
 function initializePage() {
@@ -91,9 +102,9 @@ window.onload = initializePage;
 
 // Event listeners
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('request-approval-button')) {
+    if (e.target.classList.contains('approve-chore-button')) {
         const choreName = e.target.closest('.chore-item').querySelector('.chore-name').textContent;
-        updateChoreStatus(choreName, 'To Be Approved');
+        updateChoreStatus(choreName, 'Approved');
         renderChores();
     }
 });

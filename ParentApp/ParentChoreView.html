@@ -65,64 +65,6 @@
         </a>
     </div>
 
-    <script>
-        const chores = [
-            { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
-            { name: "Take out the trash", reward: 0.50, icon: "fa-trash", frequency: "Weekly", status: "To Be Approved" },
-            { name: "Do the dishes", reward: 2.00, icon: "fa-sink", frequency: "Daily", status: "Approved" }
-        ];
-
-        function updateSummary() {
-            let totalChores = chores.length;
-            let completedChores = chores.filter(chore => chore.status === "Approved").length;
-            let pendingChores = chores.filter(chore => chore.status === "To Be Approved").length;
-
-            document.getElementById('totalChores').textContent = totalChores;
-            document.getElementById('completedChores').textContent = `${completedChores}/${totalChores}`;
-            document.getElementById('pendingChores').textContent = pendingChores;
-
-            const dialProgress = document.querySelector('.dial-progress');
-            const dialDot = document.querySelector('.dial-dot');
-            const radius = 54;
-            const circumference = 2 * Math.PI * radius;
-            
-            const completionPercentage = (completedChores / totalChores) * 100;
-            const dashArray = (completionPercentage / 100) * circumference;
-            dialProgress.style.strokeDasharray = `${dashArray} ${circumference}`;
-
-            const angle = (completionPercentage / 100) * 2 * Math.PI;
-            const dotX = 60 + radius * Math.sin(angle);
-            const dotY = 60 - radius * Math.cos(angle);
-            dialDot.setAttribute('cx', dotX);
-            dialDot.setAttribute('cy', dotY);
-        }
-
-        function renderChores() {
-            const choreList = document.getElementById('chore-list');
-            choreList.innerHTML = '';
-            chores.forEach(chore => {
-                const choreItem = document.createElement('div');
-                choreItem.className = 'chore-item';
-                choreItem.innerHTML = `
-                    <div class="chore-left">
-                        <i class="fas ${chore.icon} chore-icon"></i>
-                        <div class="chore-text">
-                            <span class="chore-name">${chore.name}</span>
-                            <span class="chore-frequency">${chore.frequency}</span>
-                        </div>
-                    </div>
-                    <div class="chore-right">
-                        <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
-                        <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
-                        ${chore.status === "To Be Approved" ? '<button class="approve-chore-button">Approve</button>' : ''}
-                    </div>
-                `;
-                choreList.appendChild(choreItem);
-            });
-            updateSummary();
-        }
-
-        window.onload = renderChores;
-    </script>
+    <script type="module" src="parentapp.js"></script>
 </body>
 </html>

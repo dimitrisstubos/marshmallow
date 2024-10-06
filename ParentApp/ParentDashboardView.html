@@ -68,46 +68,6 @@
         </a>
     </div>
     
-    <script>
-        // Sample data for demonstration
-        const child = {
-            spendingBalance: 31.20,
-            savingsBalance: 20.22,
-            rewardsBalance: 1.04,
-            transactions: [
-                {type: 'earned', description: 'Earned', subtitle: 'Made their bed', amount: 2.00, icon: 'fa-plus-circle'},
-                {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle'},
-                {type: 'spent', description: 'Spent', subtitle: 'Internet purchase', amount: -15.00, icon: 'fa-minus-circle'},
-                {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -10.00, icon: 'fa-piggy-bank'},
-                {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 5.00, icon: 'fa-exchange-alt'}
-            ]
-        };
-        
-        // Calculate total balance
-        child.totalBalance = child.spendingBalance + child.savingsBalance;
-        
-        // Update balance displays
-        document.getElementById('totalBalance').textContent = child.totalBalance.toFixed(2);
-        document.getElementById('spendingBalance').textContent = child.spendingBalance.toFixed(2);
-        document.getElementById('savingsBalance').textContent = child.savingsBalance.toFixed(2);
-        
-        // Generate transaction list
-        const transactionList = document.getElementById('transactionList');
-        child.transactions.forEach(transaction => {
-            const transactionItem = document.createElement('div');
-            transactionItem.className = 'transaction-item';
-            transactionItem.innerHTML = `
-                <div class="transaction-left">
-                    <i class="fas ${transaction.icon} transaction-icon ${transaction.type === 'swapped' ? 'swap-icon' : ''}"></i>
-                    <div class="transaction-text">
-                        <span class="transaction-description">${transaction.description}</span>
-                        <span class="transaction-subtitle">${transaction.subtitle}</span>
-                    </div>
-                </div>
-                <span class="transaction-amount ${transaction.type}">${transaction.amount >= 0 ? '+' : ''}$${Math.abs(transaction.amount).toFixed(2)}</span>
-            `;
-            transactionList.appendChild(transactionItem);
-        });
-    </script>
+    <script type="module" src="parentapp.js"></script>
 </body>
 </html>
