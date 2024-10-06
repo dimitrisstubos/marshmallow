@@ -36,31 +36,45 @@ function updateSummary() {
     updateDial(completionPercentage);
 }
 
-function renderChores() {
+function renderChores(filter = 'all') {
     const choreList = document.getElementById('chore-list');
     if (!choreList) return;
 
     choreList.innerHTML = '';
     sharedData.chores.forEach(chore => {
-        const choreItem = document.createElement('div');
-        choreItem.className = 'chore-item';
-        choreItem.innerHTML = `
-            <div class="chore-left">
-                <i class="fas ${chore.icon} chore-icon"></i>
-                <div class="chore-text">
-                    <span class="chore-name">${chore.name}</span>
-                    <span class="chore-frequency">${chore.frequency}</span>
+        if (filter === 'all' || chore.status.toLowerCase().replace(/\s+/g, '-') === filter) {
+            const choreItem = document.createElement('div');
+            choreItem.className = 'chore-item';
+            choreItem.innerHTML = `
+                <div class="chore-left">
+                    <i class="fas ${chore.icon} chore-icon"></i>
+                    <div class="chore-text">
+                        <span class="chore-name">${chore.name}</span>
+                        <span class="chore-frequency">${chore.frequency}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="chore-right">
-                <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
-                <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
-                ${chore.status === "To Do" ? '<button class="request-approval-button">Request Approval</button>' : ''}
-            </div>
-        `;
-        choreList.appendChild(choreItem);
+                <div class="chore-right">
+                    <span class="chore-status ${chore.status.toLowerCase().replace(/\s+/g, '-')}">${chore.status}</span>
+                    <span class="chore-reward">$${chore.reward.toFixed(2)}</span>
+                    ${chore.status === "To Do" ? '<button class="request-approval-button">Request Approval</button>' : ''}
+                </div>
+            `;
+            choreList.appendChild(choreItem);
+        }
     });
     updateSummary();
+}
+
+function initializeFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            const filter = this.dataset.filter;
+            renderChores(filter);
+        });
+    });
 }
 
 function initializePage() {
@@ -68,6 +82,7 @@ function initializePage() {
         updateDashboard();
     }
     if (document.getElementById('chore-list')) {
+        initializeFilterButtons();
         renderChores();
     }
 }
