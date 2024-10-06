@@ -1,8 +1,8 @@
-import { defaultTransactions, defaultData } from './sampleData.js';
+import { transactionHistory, defaultData } from './sampleData.js';
 
 // Load data from localStorage or use default
 let sharedData = JSON.parse(localStorage.getItem('sharedData')) || defaultData;
-let transactions = JSON.parse(localStorage.getItem('transactions')) || defaultTransactions;
+let transactions = JSON.parse(localStorage.getItem('transactions')) || transactionHistory;
 
 function calculateBalances() {
     let spendingBalance = 0;
