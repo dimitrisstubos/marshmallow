@@ -1,4 +1,4 @@
-import { sharedData, calculateTotalBalance, updateChoreStatus } from '../sharedData.js';
+import { sharedData, transactions, calculateTotalBalance, updateChoreStatus } from '../sharedData.js';
 import { updateDial } from './parent_dial.js';
 
 function updateDashboard() {
@@ -17,7 +17,7 @@ function renderTransactions() {
     if (!transactionList) return;
 
     transactionList.innerHTML = '';
-    sharedData.child.transactions.forEach(transaction => {
+    transactions.forEach(transaction => {
         const transactionItem = document.createElement('div');
         transactionItem.className = 'transaction-item';
         transactionItem.innerHTML = `

@@ -1,16 +1,17 @@
 // Shared data
+const defaultTransactions = [
+    {type: 'earned', description: 'Earned', subtitle: 'Made their bed', amount: 2.00, icon: 'fa-plus-circle'},
+    {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle'},
+    {type: 'spent', description: 'Spent', subtitle: 'Internet purchase', amount: -15.00, icon: 'fa-minus-circle'},
+    {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -10.00, icon: 'fa-piggy-bank'},
+    {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 5.00, icon: 'fa-exchange-alt'}
+];
+
 const defaultData = {
     child: {
         spendingBalance: 31.20,
         savingsBalance: 20.22,
         rewardsBalance: 1.04,
-        transactions: [
-            {type: 'earned', description: 'Earned', subtitle: 'Made their bed', amount: 2.00, icon: 'fa-plus-circle'},
-            {type: 'received', description: 'Received', subtitle: 'Weekly allowance', amount: 8.00, icon: 'fa-plus-circle'},
-            {type: 'spent', description: 'Spent', subtitle: 'Internet purchase', amount: -15.00, icon: 'fa-minus-circle'},
-            {type: 'saved', description: 'Saved', subtitle: 'Transfer to Savings', amount: -10.00, icon: 'fa-piggy-bank'},
-            {type: 'swapped', description: 'Swapped', subtitle: 'Swapped USDC to SOL', amount: 5.00, icon: 'fa-exchange-alt'}
-        ]
     },
     chores: [
         { name: "Clean your room", reward: 1.00, icon: "fa-broom", frequency: "Daily", status: "To Do" },
@@ -21,6 +22,7 @@ const defaultData = {
 
 // Load data from localStorage or use default
 let sharedData = JSON.parse(localStorage.getItem('sharedData')) || defaultData;
+let transactions = JSON.parse(localStorage.getItem('transactions')) || defaultTransactions;
 
 // Shared functions
 function calculateTotalBalance(child) {
@@ -49,13 +51,14 @@ function removeChore(choreName) {
 }
 
 function addTransaction(transaction) {
-    sharedData.child.transactions.unshift(transaction);
+    transactions.unshift(transaction);
     saveData();
 }
 
 function saveData() {
     localStorage.setItem('sharedData', JSON.stringify(sharedData));
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Export shared data and functions
-export { sharedData, calculateTotalBalance, updateChoreStatus, addChore, removeChore, addTransaction, saveData };
+export { sharedData, transactions, calculateTotalBalance, updateChoreStatus, addChore, removeChore, addTransaction, saveData };
