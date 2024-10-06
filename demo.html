@@ -55,9 +55,37 @@
             padding: 0.5rem 1rem;
             border-radius: 10px;
         }
+        #mobileWarning {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            z-index: 1000;
+            text-align: center;
+            padding: 2rem;
+        }
+        @media (max-width: 768px) {
+            #mobileWarning {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .iframe-container, #resetButton {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4">
+    <div id="mobileWarning">
+        <h1 class="text-3xl font-bold mb-4">Mobile Warning</h1>
+        <p class="text-xl">This demo is not available on mobile devices. Please use a desktop or laptop computer to access the full functionality.</p>
+    </div>
     
     <button id="resetButton">Reset Demo</button>
     
