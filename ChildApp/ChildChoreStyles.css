@@ -1,40 +1,4 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: rgb(251, 236, 200);
-    color: #333;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.header {
-    padding: 1rem 1.5rem;  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header i {
-    cursor: pointer;
-    font-size: 2rem; 
-    color: #4E4436;
-}
-
-.header h1 {
-    color: #4E4436;
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 2rem;
-    padding-bottom: 4rem;
-    padding-top: 1rem;
-}
-
+/* Chore List Styles */
 .chore-list {
     display: flex;
     flex-direction: column;
@@ -86,57 +50,7 @@ body {
     font-size: 1.1em;
 }
 
-.tab-bar {
-    background-color: rgb(252, 247, 231); 
-    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem 0;
-}
-
-.tab-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #887b63c5;  
-    text-decoration: none;
-    font-size: 1.5rem;
-    width: 25%;
-    position: relative;
-    padding: 0.3rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.tab-item.active {
-    color: #4E4436;  
-    background-color: rgb(251, 236, 200);
-    padding: 0.1rem;
-    width: 15%;
-    margin: 0 auto;
-}
-
-.notification-icon {
-    position: relative;
-    display: inline-block;
-}
-
-.notification-badge {
-    position: absolute;
-    top: -3px;
-    right: -10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.7rem;
-    font-weight: bold;
-}
-
+/* Chore Summary Styles */
 .chore-summary {
     display: flex;
     justify-content: space-between;
@@ -167,6 +81,7 @@ body {
     color: #887B63;
 }
 
+/* Dial Styles */
 .dial-container {
     display: flex;
     justify-content: center;
@@ -209,6 +124,7 @@ body {
     fill: #FF8C00;
 }
 
+/* Suggest Chore Button Styles */
 .suggest-chore-container {
     display: flex;
     justify-content: center;
@@ -237,6 +153,7 @@ body {
     background-color: #D67300;
 }
 
+/* Chore Status Styles */
 .chore-right {
     display: flex;
     flex-direction: column;
@@ -286,6 +203,7 @@ body {
     background-color: #3e8e41;
 }
 
+/* Chore Filter Button Styles */
 .chore-filter-buttons {
     display: flex;
     justify-content: center;
@@ -316,14 +234,4 @@ body {
 
 .filter-button:hover:not(.active) {
     background-color: rgba(252, 248, 234, 0.5);
-}
-
-/* Adjust the margin for the chore list to accommodate the new buttons */
-.chore-list {
-    margin-top: 0;
-}
-
-/* Adjust the margin for the suggest-chore-container */
-.suggest-chore-container {
-    margin-bottom: 1rem;
 }
