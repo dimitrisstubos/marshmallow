@@ -235,3 +235,15 @@
 .filter-button:hover:not(.active) {
     background-color: rgba(252, 248, 234, 0.5);
 }
+
+/* Transaction History Button Styles */
+.transaction-history-button {
+    color: #4E4436;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.transaction-history-button:hover {
+    color: #FF8C00;
+}

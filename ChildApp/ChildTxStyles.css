@@ -1,0 +1,82 @@
+/* Transaction List Styles */
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.transaction-item {
+    background-color: rgb(252, 248, 234);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-info {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-icon {
+    color: #4E4436;
+    font-size: 1.4em;
+    margin-right: 0.75rem;
+    width: 24px;
+    text-align: center;
+}
+
+.transaction-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-description {
+    color: #4E4436;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.transaction-subtitle {
+    color: #887B63;
+    font-size: 0.9em;
+}
+
+.transaction-amount {
+    color: #4E4436;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.transaction-amount.positive {
+    color: #4CAF50;
+}
+
+.transaction-amount.negative {
+    color: #F44336;
+}
+
+/* Back Button Styles */
+.back-button {
+    color: #4E4436;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    color: #887B63;
+}
+
+/* Transactions Container */
+.transactions {
+    background-color: rgb(251, 236, 200);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* Content Area (overriding global styles) */
+.content {
+    padding: 1rem;
+    padding-bottom: calc(1rem + 60px);
+}

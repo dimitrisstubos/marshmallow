@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transaction History</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="../globalStyles.css" rel="stylesheet">
+    <link href="ChildTxStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <a href="ChildChoreView.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1>Transaction History</h1>
+        <div></div>
+    </div>
+    
+    <div class="content">
+        <div class="transactions">
+            <div id="transaction-list" class="transaction-list">
+                <!-- Transactions will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <a href="ChildDashboardView.html" class="tab-item">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="#" class="tab-item">
+            <i class="fas fa-gift"></i>
+        </a>
+        <a href="ChildChoreView.html" class="tab-item">
+            <i class="fas fa-suitcase"></i>
+        </a>
+        <a href="#" class="tab-item">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </a>
+    </div>
+
+    <script type="module" src="childapp.js"></script>
+</body>
+</html>
