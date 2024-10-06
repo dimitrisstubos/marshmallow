@@ -1,29 +1,3 @@
-/* Global Styles */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: rgb(251, 236, 200);
-    color: #333;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header Styles */
-.header {
-    padding: 1rem 1.5rem;  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header i {
-    cursor: pointer;
-    font-size: 2rem; 
-    color: #4E4436;
-}
-
 /* Total Balance Section */
 .my-total-section {
     padding: 0.75rem;
@@ -41,13 +15,6 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     color: #4E4436;
-}
-
-/* Main Content Area */
-.content {
-    flex-grow: 1;
-    padding: 2rem;
-    padding-bottom: 4rem;
 }
 
 /* Card Styles (Spending and Savings) */
@@ -166,59 +133,6 @@ body {
     color: #4E4436;
     font-weight: bold;
     font-size: 1.3em;
-}
-
-/* Tab Bar Styles */
-.tab-bar {
-    background-color: rgb(252, 247, 231); 
-    box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem 0;
-}
-
-.tab-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #887b63c5;  
-    text-decoration: none;
-    font-size: 1.5rem;
-    width: 25%;
-    position: relative;
-    padding: 0.3rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-.tab-item.active {
-    color: #4E4436;  
-    background-color: rgb(251, 236, 200);
-    padding: 0.1rem;
-    width: 15%;
-    margin: 0 auto;
-}
-
-/* Notification Badge Styles */
-.notification-icon {
-    position: relative;
-    display: inline-block;
-}
-
-.notification-badge {
-    position: absolute;
-    top: -3px;
-    right: -10px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.7rem;
-    font-weight: bold;
 }
 
 /* Transaction Icon Color Variations */
