@@ -162,3 +162,49 @@
     position: relative;
     z-index: 1;
 }
+
+/* Wallet Connect Button */
+.connect-wallet-btn {
+    display: flex;
+    align-items: center;
+    background-color: #AB9FF2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.connect-wallet-btn:hover {
+    background-color: #9A8CE2;
+}
+
+.connect-wallet-btn.connected {
+    background-color: #34C759;
+}
+
+.connect-wallet-btn.connected:hover {
+    background-color: #2FB350;
+}
+
+.phantom-icon {
+    width: 20px;
+    height: 17px;
+    margin-right: 6px;
+}
+
+/* Adjust header to accommodate the new button */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header i.fas.fa-user-circle {
+    font-size: 1.5rem;
+    color: #4E4436;
+}

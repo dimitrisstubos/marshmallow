@@ -27,7 +27,5 @@ function handleFormSubmit(event) {
     };
 
     addChore(newChore);
-
-    alert('Chore added successfully!');
     window.location.href = 'ParentChoreView.html';
 }
