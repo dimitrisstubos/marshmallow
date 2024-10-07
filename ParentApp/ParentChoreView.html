@@ -40,7 +40,7 @@
         </div>
 
         <div class="suggest-chore-container">
-            <button class="suggest-chore-button">Add New Chore</button>
+            <button id="addChoreButton" class="suggest-chore-button">Add New Chore</button>
         </div>
 
         <div class="chore-filter-buttons">
@@ -74,5 +74,9 @@
 
     <script type="module" src="parentapp.js"></script>
     <script type="module" src="parent_dial.js"></script>
+    <script type="module">
+        import { initializeAddChoreButton } from './parentChoreView.js';
+        document.addEventListener('DOMContentLoaded', initializeAddChoreButton);
+    </script>
 </body>
 </html>
