@@ -8,10 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Simulate connecting
             setTimeout(() => {
                 isConnected = true;
-                connectBtnText.textContent = 'Connected';
+                connectBtnText.textContent = 'AbC..123';
                 connectWalletBtn.classList.add('connected');
-                alert('Wallet connected successfully!');
-            }, 1000); // Simulate a 1-second delay for connection
+            }, 300); // Simulate a 1-second delay for connection
         } else {
             // Simulate disconnecting
             isConnected = false;
