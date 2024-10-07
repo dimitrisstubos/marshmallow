@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Add New Chore</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="../globalStyles.css" rel="stylesheet">
+    <link href="ParentChoreInputStyles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-arrow-left" id="backButton"></i>
+        <h1 class="text-xl font-bold">Add New Chore</h1>
+        <div></div>
+    </div>
+    
+    <div class="content">
+        <form id="addChoreForm" class="chore-form">
+            <div class="form-group">
+                <label for="choreName" class="form-label">Chore Name</label>
+                <input type="text" id="choreName" name="choreName" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="choreEarnings" class="form-label">Earnings ($)</label>
+                <input type="number" id="choreEarnings" name="choreEarnings" step="0.01" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="choreFrequency" class="form-label">Frequency</label>
+                <select id="choreFrequency" name="choreFrequency" required class="form-input">
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="One-time">One-time</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="choreIcon" class="form-label">Icon</label>
+                <div class="icon-selector">
+                    <div class="icon-grid">
+                        <button type="button" class="icon-option" data-value="🧹">🧹</button>
+                        <button type="button" class="icon-option" data-value="🗑️">🗑️</button>
+                        <button type="button" class="icon-option" data-value="🚽">🚽</button>
+                        <button type="button" class="icon-option" data-value="🛏️">🛏️</button>
+                        <button type="button" class="icon-option" data-value="🐾">🐾</button>
+                        <button type="button" class="icon-option" data-value="🍽️">🍽️</button>
+                        <button type="button" class="icon-option" data-value="🧺">🧺</button>
+                        <button type="button" class="icon-option" data-value="🪴">🪴</button>
+                    </div>
+                </div>
+                <input type="hidden" id="choreIcon" name="choreIcon" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-button">Add Chore</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="tab-bar">
+        <a href="ParentDashboardView.html" class="tab-item">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="#" class="tab-item">
+            <i class="fas fa-gift"></i>
+        </a>
+        <a href="ParentChoreView.html" class="tab-item active">
+            <i class="fas fa-suitcase"></i>
+        </a>
+        <a href="#" class="tab-item">
+            <div class="notification-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">1</span>
+            </div>
+        </a>
+    </div>
+
+    <script type="module">
+        import { initializeChoreInput } from './parentChoreInput.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeChoreInput();
+
+            const iconGrid = document.querySelector('.icon-grid');
+            const hiddenInput = document.getElementById('choreIcon');
+
+            iconGrid.addEventListener('click', function(event) {
+                if (event.target.classList.contains('icon-option')) {
+                    const selectedOption = event.target;
+                    const iconValue = selectedOption.getAttribute('data-value');
+                    hiddenInput.value = iconValue;
+
+                    document.querySelectorAll('.icon-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    selectedOption.classList.add('selected');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
