@@ -36,22 +36,6 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="choreIcon" class="form-label">Icon</label>
-                <div class="icon-selector">
-                    <div class="icon-grid">
-                        <button type="button" class="icon-option" data-value="🧹">🧹</button>
-                        <button type="button" class="icon-option" data-value="🗑️">🗑️</button>
-                        <button type="button" class="icon-option" data-value="🚽">🚽</button>
-                        <button type="button" class="icon-option" data-value="🛏️">🛏️</button>
-                        <button type="button" class="icon-option" data-value="🐾">🐾</button>
-                        <button type="button" class="icon-option" data-value="🍽️">🍽️</button>
-                        <button type="button" class="icon-option" data-value="🧺">🧺</button>
-                        <button type="button" class="icon-option" data-value="🪴">🪴</button>
-                    </div>
-                </div>
-                <input type="hidden" id="choreIcon" name="choreIcon" required>
-            </div>
-            <div class="form-group">
                 <button type="submit" class="submit-button">Add Chore</button>
             </div>
         </form>
@@ -79,22 +63,6 @@
         import { initializeChoreInput } from './parentChoreInput.js';
         document.addEventListener('DOMContentLoaded', () => {
             initializeChoreInput();
-
-            const iconGrid = document.querySelector('.icon-grid');
-            const hiddenInput = document.getElementById('choreIcon');
-
-            iconGrid.addEventListener('click', function(event) {
-                if (event.target.classList.contains('icon-option')) {
-                    const selectedOption = event.target;
-                    const iconValue = selectedOption.getAttribute('data-value');
-                    hiddenInput.value = iconValue;
-
-                    document.querySelectorAll('.icon-option').forEach(option => {
-                        option.classList.remove('selected');
-                    });
-                    selectedOption.classList.add('selected');
-                }
-            });
         });
     </script>
 </body>

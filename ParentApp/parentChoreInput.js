@@ -16,12 +16,12 @@ function handleFormSubmit(event) {
     const choreName = document.getElementById('choreName').value;
     const choreEarnings = parseFloat(document.getElementById('choreEarnings').value);
     const choreFrequency = document.getElementById('choreFrequency').value;
-    const choreIcon = document.getElementById('choreIcon').value;
+    const defaultIcon = 'fa-broom'; 
 
     const newChore = {
         name: choreName,
         reward: choreEarnings,
-        icon: choreIcon,
+        icon: defaultIcon,
         frequency: choreFrequency,
         status: "To Do"
     };
